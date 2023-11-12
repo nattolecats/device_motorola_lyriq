@@ -84,9 +84,9 @@ BOARD_KERNEL_CMDLINE := \
     androidboot.selinux=permissive
 
 TARGET_FORCE_PREBUILT_KERNEL := true
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-prebuilt/dtbo.img
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-prebuilt/kernel
-TARGET_PREBUILT_DTB := $(DEVICE_PATH)-prebuilt/dtb.img
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)-kernel/dtbo.img
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)-kernel/kernel
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_INCLUDE_DTB_IN_BOOTIMG :=
 
@@ -112,6 +112,9 @@ BOARD_USES_METADATA_PARTITION := true
 TARGET_COPY_OUT_PRODUCT := product
 TARGET_COPY_OUT_SYSTEM_EXT := system_ext
 TARGET_COPY_OUT_VENDOR := vendor
+
+# Prebuilt vendor image
+include device/motorola/lyriq-images/vendor-image.mk
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6893
