@@ -90,6 +90,18 @@ TARGET_PREBUILT_DTB := $(DEVICE_PATH)-kernel/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
 BOARD_INCLUDE_DTB_IN_BOOTIMG :=
 
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)-kernel/dtb.img:$(TARGET_COPY_OUT)/dtb.img \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/modules/,$(TARGET_COPY_OUT_VENDOR_RAMDISK)/lib/modules) \
+    $(call find-copy-subdir-files,*,$(DEVICE_PATH)-kernel/modules/,$(TARGET_COPY_OUT_VENDOR_DLKM)/lib/modules)
+
+BOARD_VENDOR_KERNEL_MODULES := \
+    $(wildcard $(DEVICE_PATH)-kernel/vendor-modules/*.ko)
+BOARD_VENDOR_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)-kernel/modules/modules.load))
+BOARD_VENDOR_KERNEL_MODULES_BLOCKLIST_FILE := $(DEVICE_PATH)-kernel/modules/modules.blocklist
+BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD := $(strip $(shell cat $(DEVICE_PATH)-kernel/modules/modules.load.recovery))
+BOOT_KERNEL_MODULES := $(BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD)
+
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
