@@ -96,8 +96,8 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
 # DRM
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4-service.clearkey
+#PRODUCT_PACKAGES += \
+#    android.hardware.drm@1.4-service.clearkey
 
 # Device ID attestation
 PRODUCT_COPY_FILES += \
@@ -210,13 +210,13 @@ PRODUCT_PACKAGES += \
     android.hardware.neuralnetworks@1.3.vendor
 
 # NFC
-PRODUCT_PACKAGES += \
-    android.hardware.nfc_snxxx@1.2-service \
-    com.android.nfc_extras \
-    libchrome.vendor \
-    NfcNci \
-    SecureElement \
-    Tag
+#PRODUCT_PACKAGES += \
+#    android.hardware.nfc_snxxx@1.2-service \
+#    com.android.nfc_extras \
+#    libchrome.vendor \
+#    NfcNci \
+#    SecureElement \
+#    Tag
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.nfc.hce.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.nfc.hce.xml \
